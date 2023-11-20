@@ -4,7 +4,6 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 import socket
 import threading
 import os
@@ -39,18 +38,17 @@ class handler:
         #init driver to chrome browser w/ remote debugging enabled on specified port
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_experimental_option("debuggerAddress", f"127.0.0.1:{port}")
-        chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(options=chrome_options)
         return driver
 
     def send_prompt(self, prompt, location):
-        input_box = WebDriverWait(self.driver, 0.5).until(EC.presence_of_element_located((By.XPATH, f"//input[@aria-label = '{location}']")))
+        input_box = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, f"//input[@aria-label = '{location}']")))
         input_box.click()
         input_box.send_keys(prompt)
         input_box.submit()
 
     def click_item(self, location):
-        element = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, f"[aria-label='{location}']")))
+        element = WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.CSS_SELECTOR, f"[aria-label='{location}']")))
         element.click()
 
     def quit(self):
