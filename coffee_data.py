@@ -10,7 +10,7 @@ driver = handler(chrome_path, chrome_driver_path, target_url)
 curr_time = time.strftime("%H:%M:%S",time.localtime())
 time.sleep(4)
 email = "apps@dedicatedmkt.com"
-password = ".354FubWNNXG8Ej"
+password = ""
 
 try:
     driver.send_prompt(email, "Email address")
