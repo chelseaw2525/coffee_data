@@ -3,14 +3,15 @@ from selenium import webdriver
 
 from driver_setup import handler
 
-chrome_driver_path = r"C:\webdrivers\chromedriver.exe"
-chrome_path = r'"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+#chrome_path = r'"C:\Program Files\Google\Chrome\Application\chrome.exe"' #windows
+chrome_path = r'"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"' #mac
+
 target_url = r"https://squareup.com/dashboard/sales/transactions"
-driver = handler(chrome_path, chrome_driver_path, target_url)
+driver = handler(chrome_path, target_url)
 curr_time = time.strftime("%H:%M:%S",time.localtime())
 time.sleep(4)
 email = "apps@dedicatedmkt.com"
-password = ""
+password = "" #please type password here between the quotations
 
 try:
     driver.send_prompt(email, "Email address")

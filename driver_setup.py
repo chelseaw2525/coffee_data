@@ -9,11 +9,8 @@ import threading
 import os
 
 class handler:
-    def __init__(self, chrome_path, chrome_driver_path, target):
-
+    def __init__(self, chrome_path, target):
         self.chrome_path = chrome_path
-        self.chrome_driver_path = chrome_driver_path
-
         url = target
         free_port = self.find_available_port()
         self.launch_chrome_with_remote_debugging(free_port, url)
